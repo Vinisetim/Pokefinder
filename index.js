@@ -1,41 +1,39 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
-// Sua chave de API configurada
-const API_KEY = "AQ.Ab8RN6KwDQ8VJFRduFwEHNALTxs8Kd9QD6FvhUYc12mrPYLI3A"; 
+const CHAVE_API = "AQ.Ab8RN6J0WsETHk9WQ0mURT8F-65mAxzM1NqF7gzF3iiz0u2b3A"; 
 
-// Ajustado para o formato correto da nova versão da biblioteca
-const ai = new GoogleGenerativeAI(API_KEY);
+const ia = new GoogleGenerativeAI(CHAVE_API);
 
-const chatMessages = document.getElementById('chat-messages');
-const chatForm = document.getElementById('chat-form');
-const userInput = document.getElementById('user-input');
+const mensagensChat = document.getElementById('chat-messages');
+const formularioChat = document.getElementById('chat-form');
+const entradaUsuario = document.getElementById('user-input');
 
 function adicionarMensagem(texto, remetente) {
-  const msg = document.createElement('div');
-  msg.classList.add('message', remetente);
-  msg.innerText = texto;
-  chatMessages.appendChild(msg);
-  chatMessages.scrollTop = chatMessages.scrollHeight;
+  const elementoMensagem = document.createElement('div');
+  elementoMensagem.classList.add('message', remetente);
+  elementoMensagem.innerText = texto;
+  mensagensChat.appendChild(elementoMensagem);
+  mensagensChat.scrollTop = mensagensChat.scrollHeight;
 }
 
-chatForm.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const textoUsuario = userInput.value.trim();
+formularioChat.addEventListener('submit', async (evento) => {
+  evento.preventDefault();
+  const textoUsuario = entradaUsuario.value.trim();
   if (!textoUsuario) return;
 
-  userInput.value = '';
+  entradaUsuario.value = '';
   adicionarMensagem(textoUsuario, 'user');
   adicionarMensagem('Pensando...', 'bot');
 
-  const ultimaMensagemBot = chatMessages.lastChild;
+  const ultimaMensagemBot = mensagensChat.lastChild;
 
   try {
-    const model = ai.getGenerativeModel({ 
+    const modelo = ia.getGenerativeModel({ 
       model: 'gemini-2.5-flash',
       systemInstruction: 'Você é um Pokedex ambulante. O usuário vai descrever um Pokémon e você deve dizer qual é o nome dele em destaque, confirmar as características e contar uma curiosidade rápida.'
     });
 
-    const resultado = await model.generateContent(textoUsuario);
+    const resultado = await modelo.generateContent(textoUsuario);
     ultimaMensagemBot.innerText = resultado.response.text();
   } catch (erro) {
     console.error(erro);
