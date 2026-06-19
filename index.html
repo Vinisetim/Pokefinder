@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quem é esse Pokémon?</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- A TAG QUE FALTAVA ESTÁ AQUI EMBAIXO -->
+  <div class="chat-container">
+    
+    <div class="chat-header">
+      <!-- Container para alinhar a logo e o texto -->
+      <div class="logo-container">
+        <img src="pokebola.jpg" alt="Pokébola Logo" class="header-logo">
+        <h2>Quem é esse Pokémon?</h2>
+      </div>
+      <p>Descreva o Pokémon e eu adivinho!</p>
+    </div>
+    
+    <div id="chat-messages" class="chat-messages">
+      <div class="message bot">Olá! Descreva um Pokémon para mim.</div>
+    </div>
+
+    <form id="chat-form">
+      <input type="text" id="user-input" placeholder="Ex: É amarelo e solta raios..." required autocomplete="off">
+      <button type="submit">Enviar</button>
+    </form>
+
+  </div> <!-- Fechamento da chat-container -->
+
+  <!-- Importa a biblioteca do Gemini direto da internet -->
+  <script type="importmap">
+    {
+      "imports": {
+        "@google/generative-ai": "https://esm.run/@google/generative-ai"
+      }
+    }
+  </script>
+  
+  <!-- ATENÇÃO: Verifique se o seu arquivo JS chama-se index.js ou app.js e ajuste abaixo se necessário -->
+  <script type="module" src="index.js"></script>
+</body>
+</html>
