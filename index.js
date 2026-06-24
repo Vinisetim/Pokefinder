@@ -1,6 +1,6 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
-const CHAVE_API = "AQ.Ab8RN6J0WsETHk9WQ0mURT8F-65mAxzM1NqF7gzF3iiz0u2b3A"; 
+const CHAVE_API = ""; 
 
 const ia = new GoogleGenerativeAI(CHAVE_API);
 
